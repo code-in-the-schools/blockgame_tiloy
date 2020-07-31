@@ -49,6 +49,7 @@ while not Gameover:
            pygame.display.flip()
          pygame.display.update()
            FPSClock.tick(FPS)
+           print
          
 pygame.quit()
           
