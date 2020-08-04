@@ -35,6 +35,7 @@ FPSClock = pygame.time.Clock()
 FPS = 60
     
 Gameover = False
+print
     
 while not Gameover:
     for event in pygame.event.get():
