@@ -14,7 +14,7 @@ Paddley = ScreenH - PaddleH - offset
 n = 10
 BlockW = ScreenW / n
 BlockH = BlockW / 2
-
+print
 pygame.init()
 
 pygame.display.set_caption("Breakout game")
