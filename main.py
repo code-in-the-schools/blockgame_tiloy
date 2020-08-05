@@ -1,56 +1,62 @@
-import pygame
-import paddle
-import block
+import pygame,sys
 
-ScreenW, ScreenH = 1280,720
-backgroundColor = [123,126,130]
+def ball_animation():
+  global ball_speed_x,ball_speed_y
+  ball.x += ball_speed_x
+  ball.y += ball_speed_y
 
-offset = 30
-PaddleW = 200
-PaddleH = 25
-Paddlex = ScreenW / 2 - PaddleW / 2
-Paddley = ScreenH - PaddleH - offset
+if ball.top <= 0 or ball.bottom >= screen_height:
+    ball_speed_y *=-1
+if ball.left <= 0 or ball.right >= screen_width:
+    ball_speed_x *=-1
 
-n = 10
-BlockW = ScreenW / n
-BlockH = BlockW / 2
-print
+    if ball.colliderect(player) or ball.colliderect(opponent):
+      ball_speed_x *= -1
+      
 pygame.init()
+clock = pygame.time.clock()
+'p'
+# Setting up the main window
+screen_width = 1280
+screen_height = 960
+screen = pygame.display.set_mode((screen_width,screen_height))
+pygame.display.set_caption('Pong')
 
-pygame.display.set_caption("Breakout game")
-Display = pygame.display.set_mode([ScreenW, ScreenH])
+#Game Rectangles
+ball = pygame.Rect(screen_width/2-15,screen_height/2-15,30,30)
+player = pygame.rect(screen_width-20,screen_height/2-70,10,140)
+oppnent = pygame.rect(10, screen_height/2-70,10,140)
 
-Display.fill(backgroundColor)
+bg_color= pygame.color('grey12')
+light_gray = (200,200,200)
 
-player = paddle.paddle(Paddlex, Paddley, PaddleW, PaddleH )
+ball_spped_x = 7
+ball_speed_y = 7
 
-block = []
+while True:
+  #Handling input
+  for event in pygame.evnt.get():
+    if event.type == pygame.Quit:
+      pygame.quit()
+      sys.exit()
 
-for x in range(0,int(ScreenW),int(BlockW)):
-      blocks.append(block.Block(x,50,BlockW,BlockH))
+      ball.x += ball_speed_x
+      ball.y += ball_speed_y
 
-    
+if ball.top <= 0 or ball.bottom >= screen_height:
+    ball_speed_y *=-1
+if ball.left <= 0 or ball.right >= screen_width:
+    ball_speed_x *=-1
 
-FPSClock = pygame.time.Clock()
-FPS = 60
-    
-Gameover = False
-print
-    
-while not Gameover:
-    for event in pygame.event.get():
-      if event.type == pygame.QUIT:
-             Gameover = True
-          Display.fill(backgroundColor)
-          mousex = pygame.mouse.get_pos()[0]
-          player.draw(Display)
-          player.move(mousex)
-          for i in range(len(blocks)):
-            block[i].draw(display)
-           pygame.display.flip()
-         pygame.display.update()
-           FPSClock.tick(FPS)
-           print
-         
-pygame.quit()
-          
+    if ball.colliderect(player or ball.colliderect(opponent):
+      ball_speed_x *= -1
+#Visuals
+screen.fill(bg.color)
+pygame.draw.rect(screen,light_gray,player)
+pygame.draw.rect(screen,light_gray,opponent)
+pygame.darw.ellipse(screen,light_grey,ball)
+pygame.draw.aaline(screen,light_gray,(screen_width/2,0),(screen_width/2,screen_height))
+
+#Updating the window
+      pygame
+      clock.tick(60)
